@@ -82,7 +82,10 @@
 <!-- Category Quick Picks -->
 <section class="category-section">
   <h2 style="text-align:center; margin-bottom:30px;">Featured Products</h2>
-  <div class="category-wrapper" id="categoryGrid"></div>
+  <div class="category-wrapper" id="categoryGrid">
+    <!-- Removed dynamic product cards -->
+    <p style="text-align:center; color:#888;">Product cards are currently unavailable.</p>
+  </div>
 </section>
 
 <!-- Selling Strategy -->
@@ -101,13 +104,9 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  // Product data from original home page
-  const products = [
-    { name:"Smartphone", desc:"Smartphones are your all-in-one pocket companions, combining communication, entertainment, and productivity. Stunning display, powerful processor, advanced camera, long battery.", img:"./images/mobile1.png" },
-    { name:"Tandoori Chicken", desc:"Delicious, spicy, and perfectly cooked Tandoori Chicken for your meals. Juicy, flavorful, and packed with traditional taste.", img:"./images/tandhori1.png" },
-    { name:"Fish Fry", desc:"Freshly fried fish with crispy coating and rich taste. Perfect for family meals or special occasions.", img:"./images/fish2.png" },
-    { name:"Fruit Juice", desc:"Refreshing, natural fruit juices made with fresh ingredients. Stay healthy and hydrated every day.", img:"./images/juice1.png" }
+<!-- Removed JavaScript that dynamically created product cards -->
+</body>
+</html>
   ];
 
   const categoryGrid = document.getElementById("categoryGrid");
@@ -284,4 +283,5 @@ document.getElementById("logoutBtn").addEventListener("click", function(e){
 </script>
 </body>
 </html>
+
 
