@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murugan store Login</title>
+    <link rel="icon" type="image/png" href="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            z-index: 2;
+            position: relative;
+        }
+        .card {
+            background: rgba(255,255,255,0.95);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .logo img {
+            width: 80px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            border: 2px solid #e67e22;
+        }
+        h2 {
+            color: #e67e22;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .toggle-btns {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .toggle-btns button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            font-weight: bold;
+            color: #333;
+            transition: 0.3s;
+        }
+        .toggle-btns button.active {
+            background: #e67e22;
+            color: #fff;
+        }
+        form {
+            display: none;
+            flex-direction: column;
+        }
+        form.active {
+            display: flex;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-group input:focus {
+            border-color: #e67e22;
+            box-shadow: 0 0 5px rgba(230,126,34,0.5);
+        }
+        .input-group i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+        .btn-submit {
+            padding: 12px;
+            background: #e67e22;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            background: #cf6c17;
+        }
+        .extra-links {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .extra-links a {
+            color: #e67e22;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="card">
+            <div class="logo">
+                <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=80&q=80" alt="Restaurant Logo">
+            </div>
+            <h2>Foodies Delight</h2>
+            <h1>Murugan Store</h1>
+            <p id="form-desc">Login to manage your orders or continue later</p>
+
+            <div class="toggle-btns">
+                <button id="btnLogin" class="active">Login</button>
+                <button id="btnRegister">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="active">
+                <div class="input-group">
+                    <input type="text" id="loginUser" placeholder="Username" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPass" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit" class="btn-submit">Login</button>
+                <div class="extra-links">
+                    <a id="forgotPassBtn">Forgot Password?</a> | 
+                    <a id="loginLater">Login Later</a>
+                </div>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm">
+                <div class="input-group">
+                    <input type="text" id="regUser" placeholder="Username" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="regEmail" placeholder="Email" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="regPass" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit" class="btn-submit">Register</button>
+            </form>
+
+            <!-- Forgot Password Form -->
+            <form id="forgotForm">
+                <div class="input-group">
+                    <input type="text" id="fpUser" placeholder="Enter Username" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <button type="submit" class="btn-submit">Send Code</button>
+                <div class="extra-links">
+                    <a id="backToLogin">Back to Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const btnLogin = document.getElementById("btnLogin");
+        const btnRegister = document.getElementById("btnRegister");
+        const loginForm = document.getElementById("loginForm");
+        const registerForm = document.getElementById("registerForm");
+        const forgotForm = document.getElementById("forgotForm");
+        const formDesc = document.getElementById("form-desc");
+        const loginLater = document.getElementById("loginLater");
+        const forgotPassBtn = document.getElementById("forgotPassBtn");
+        const backToLogin = document.getElementById("backToLogin");
+
+        // Form toggle
+        btnLogin.addEventListener("click", () => {
+            loginForm.classList.add("active");
+            registerForm.classList.remove("active");
+            forgotForm.classList.remove("active");
+            btnLogin.classList.add("active");
+            btnRegister.classList.remove("active");
+            formDesc.textContent = "Login to manage your orders or continue later";
+        });
+
+        btnRegister.addEventListener("click", () => {
+            registerForm.classList.add("active");
+            loginForm.classList.remove("active");
+            forgotForm.classList.remove("active");
+            btnRegister.classList.add("active");
+            btnLogin.classList.remove("active");
+            formDesc.textContent = "Register a new account";
+        });
+
+        forgotPassBtn.addEventListener("click", () => {
+            forgotForm.classList.add("active");
+            loginForm.classList.remove("active");
+            registerForm.classList.remove("active");
+            formDesc.textContent = "Recover your password";
+        });
+
+        backToLogin.addEventListener("click", () => {
+            loginForm.classList.add("active");
+            forgotForm.classList.remove("active");
+            registerForm.classList.remove("active");
+            formDesc.textContent = "Login to manage your orders or continue later";
+        });
+
+        // Users storage
+        function getUsers() {
+            return JSON.parse(localStorage.getItem("users")) || [];
+        }
+
+        function saveUser(user) {
+            const users = getUsers();
+            users.push(user);
+            localStorage.setItem("users", JSON.stringify(users));
+        }
+
+        // Login
+        loginForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const username = document.getElementById("loginUser").value.trim();
+            const password = document.getElementById("loginPass").value.trim();
+            const user = getUsers().find(u => u.username === username && u.password === password);
+            if (user) {
+                localStorage.setItem("loggedInUser", username);
+                window.location.href = "home.html";
+            } else {
+                alert("Incorrect username or password");
+            }
+        });
+
+        // Register
+        registerForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const username = document.getElementById("regUser").value.trim();
+            const email = document.getElementById("regEmail").value.trim();
+            const password = document.getElementById("regPass").value.trim();
+            const users = getUsers();
+            if (users.some(u => u.username === username)) {
+                alert("Username already exists");
+                return;
+            }
+            saveUser({ username, email, password });
+            localStorage.setItem("loggedInUser", username);
+            alert("Registration successful!");
+            window.location.href = "home.html";
+        });
+
+        // Login Later
+        loginLater.addEventListener("click", () => {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "home.html";
+        });
+
+        // Forgot Password
+        forgotForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const username = document.getElementById("fpUser").value.trim();
+            const user = getUsers().find(u => u.username === username);
+            if (!user) { 
+                alert("Username not found"); 
+                return; 
+            }
+            const code = Math.floor(100000 + Math.random() * 900000);
+            alert("Your recovery code is: " + code); 
+            const entered = prompt("Enter the code you received:");
+            if (entered == code) {
+                alert("Your password is: " + user.password);
+            } else {
+                alert("Incorrect code");
+            }
+        });
+    </script>
+</body>
+</html>

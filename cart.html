@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Murugan Store - Cart</title>
+<link rel="icon" type="image/png" href="">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+  body {
+    background: linear-gradient(135deg, #f0c, #0cf);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-table img {
+    height: 50px;
+    border-radius: 5px;
+  }
+  .cart-summary {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .success-animation {
+    display: none;
+    text-align: center;
+    font-size: 2rem;
+    color: green;
+    animation: pop 0.5s ease-in-out forwards;
+  }
+  @keyframes pop {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+  }
+  footer {
+    background: rgba(0,0,0,0.8);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+  }
+  .order-header {
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .order-items {
+    display: none;
+    font-size: 0.9rem;
+    color: #222;
+    padding-left: 20px;
+    margin-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="gov.jpg" alt="Murugan Store Logo" width="40" height="40" class="rounded-circle me-2">
+      <strong>Murugan Store</strong>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+        <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="terms.html">Terms</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">log out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Cart Content -->
+<div class="container my-4 flex-grow-1">
+  <h2 class="mb-4">🛒 Your Cart</h2>
+  <div class="table-responsive cart-table">
+    <table class="table table-striped align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Select</th>
+          <th>Image</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Total</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems"></tbody>
+    </table>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <h4>📜 Order History</h4>
+      <button class="btn btn-danger btn-sm mb-2" onclick="clearHistory()">🗑 Clear History</button>
+      <ul id="orderHistory" class="list-group"></ul>
+    </div>
+    <div class="col-md-6">
+      <div class="cart-summary">
+        <h4>Cart Summary</h4>
+        <p>Subtotal: ₹<span id="subtotal">0</span></p>
+        <p>Shipping: ₹<span id="shipping">50</span></p>
+        <h5>Total: ₹<span id="grandTotal">0</span></h5>
+        <button class="btn btn-success w-100 mt-3" onclick="placeOrder()">✅ Place Order</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="success-animation" id="successAnim">🎉 Order Placed Successfully!</div>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 Murugan Store | Built with ❤️ by Govendhan
+</footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+function renderCart() {
+  const tbody = document.getElementById('cartItems');
+  const subtotalElem = document.getElementById('subtotal');
+  const grandTotalElem = document.getElementById('grandTotal');
+  tbody.innerHTML = '';
+  let subtotal = 0;
+
+  cart.forEach((item, index) => {
+    let row = `
+      <tr>
+        <td><input type="checkbox" class="form-check-input" onchange="toggleSelection(${index})" ${item.selected ? 'checked' : ''}></td>
+        <td><img src="${item.image}" alt="${item.name}"></td>
+        <td>${item.name}</td>
+        <td>₹${item.price}</td>
+        <td>${item.qty}</td>
+        <td>₹${item.price * item.qty}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" onclick="moveToWishlist(${index})"><i class="fas fa-heart"></i></button>
+          <button class="btn btn-danger btn-sm" onclick="removeItem(${index})"><i class="fas fa-trash"></i></button>
+        </td>
+      </tr>`;
+    tbody.innerHTML += row;
+    if (item.selected) subtotal += item.price * item.qty;
+  });
+
+  subtotalElem.textContent = subtotal;
+  grandTotalElem.textContent = subtotal + (cart.some(i => i.selected) ? 50 : 0);
+}
+
+function toggleSelection(index) {
+  cart[index].selected = !cart[index].selected;
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+function moveToWishlist(index) {
+  const item = cart[index];
+  if (!wishlist.some(w => w.name === item.name)) {
+    wishlist.push({...item, date: new Date().toLocaleString()});
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  }
+  removeItem(index);
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+function renderHistory() {
+  const list = document.getElementById('orderHistory');
+  list.innerHTML = '';
+  orders.forEach((order, i) => {
+    let totalQty = order.items.reduce((sum, item) => sum + item.qty, 0);
+    let li = document.createElement('li');
+    li.className = 'list-group-item';
+
+    li.innerHTML = `
+      <div class="order-header" onclick="toggleOrderItems(${i})">
+        <strong>${order.date}</strong> - ₹${order.total} (${totalQty} qty) ▼
+      </div>
+      <ul class="order-items" id="order-items-${i}">
+        ${order.items.map(it => `<li>${it.name} - ${it.qty} pcs (₹${it.price} each)</li>`).join('')}
+      </ul>
+    `;
+    list.appendChild(li);
+  });
+}
+
+function toggleOrderItems(index) {
+  let itemsList = document.getElementById(`order-items-${index}`);
+  itemsList.style.display = (itemsList.style.display === 'block') ? 'none' : 'block';
+}
+
+function clearHistory() {
+  if (confirm("Are you sure you want to clear all order history?")) {
+    orders = [];
+    localStorage.setItem('orders', JSON.stringify(orders));
+    renderHistory();
+  }
+}
+
+function placeOrder() {
+  let selectedItems = cart.filter(item => item.selected);
+  if (selectedItems.length === 0) {
+    alert('Please select at least one item!');
+    return;
+  }
+
+  let subtotal = selectedItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  let total = subtotal + 50;
+
+  let newOrder = {
+    date: new Date().toLocaleString(),
+    total: total,
+    items: selectedItems
+  };
+  orders.push(newOrder);
+  localStorage.setItem('orders', JSON.stringify(orders));
+
+  cart = cart.filter(item => !item.selected);
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  let orderDetails = selectedItems.map(item => 
+    `${item.name} - ₹${item.price} x ${item.qty} = ₹${item.price * item.qty}`
+  ).join('%0D%0A');
+
+  let emailSubject = `Murugan Store Order - ${newOrder.date}`;
+  let emailBody = `Order Date: ${newOrder.date}%0D%0A%0D%0AItems:%0D%0A${orderDetails}%0D%0A%0D%0ASubtotal: ₹${subtotal}%0D%0AShipping: ₹50%0D%0ATotal: ₹${total}%0D%0A%0D%0AThank you for shopping with us!`;
+
+  window.location.href = `mailto:muruganstore680@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${emailBody}`;
+
+  renderCart();
+  renderHistory();
+
+  const anim = document.getElementById('successAnim');
+  anim.style.display = 'block';
+  setTimeout(() => anim.style.display = 'none', 3000);
+}
+
+renderCart();
+renderHistory();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Murugan Store - Categories</title>
+  <link rel="icon" type="image/png" href="">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #f0c, #0cf);
+      color: #fff;
+      scroll-behavior: smooth;
+      padding-top: 70px;
+    }
+
+    section {
+      padding: 23px 89px;
+    }
+
+    .category-card {
+      background: #fff;
+      color: #000;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s;
+    }
+
+    .category-card:hover {
+      transform: scale(1.05);
+    }
+
+    .category-card img {
+      border-radius: 10px;
+      max-height: 180px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .product {
+      display: flex;
+      flex-wrap: wrap;
+      background: white;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      color: #000;
+    }
+
+    .product-image {
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      animation: rotate 10s linear infinite;
+    }
+
+    .product-details {
+      flex: 2;
+      padding: 1rem;
+    }
+
+    .product-details h2 {
+      margin-top: 0;
+      color: #1a5d1a;
+    }
+
+    .product-details h3 {
+      margin: 0.5rem 0;
+      color: goldenrod;
+    }
+
+    .btn-cart {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .btn-wish {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotateY(0deg);
+      }
+
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="gov.jpg" alt="Murugan Store Logo" width="40" height="40" class="rounded-circle me-2">
+        <strong>Murugan Store</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+          <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="terms.html">Terms</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">log out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Categories Section -->
+  <section id="categories" class="container">
+    <div id="category-slider" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="1900">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="category-card" onclick="showCategory('food')">
+            <img src="https://wallpapers.com/images/hd/food-4k-spdnpz7bhmx4kv2r.jpg" alt="Food" />
+            <h4>🍽️ Food</h4>
+            <p>Delicious meals up to 30% off</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="category-card" onclick="showCategory('car')">
+            <img src="https://dminteriors.lk/wp-content/uploads/2024/01/Automotive-Shop-Design-Ideas-3.jpg" alt="Car" />
+            <h4>🚗 Car</h4>
+            <p>Car essentials at discount</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="category-card" onclick="showCategory('bike')">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.vX7oLIMSDCuuof3-z4QGqwHaGT" alt="Bike" />
+            <h4>🏍️ Bike</h4>
+            <p>Best bike parts & gear</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- other-->
+    <div class="d-flex flex-column align-items-center gap-4">
+      <div style="width: 60%;">
+        <div class="category-card" onclick="showCategory('dress')">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.oclOqAMoYpFkCRGB-emtcAAAAA" alt="Dress" />
+          <h4>👗 Dress</h4>
+          <p>Stylish outfits 40% off</p>
+        </div>
+      </div>
+      <div style="width: 60%;">
+        <div class="category-card" onclick="showCategory('toys')">
+          <img src="https://cdn.firstcry.com/education/2022/11/06094158/Toy-Names-For-Kids.jpg" alt="Toys" />
+          <h4>Toys 🎲</h4>
+          <p>“Fun & learning under ₹999 — up to 30% off!”</p>
+        </div>
+      </div>
+
+      <div style="width: 60%;">
+        <div class="category-card" onclick="showCategory('snacks')">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.cIoU3kcbZk3PhSD650lzIwHaE7" alt="Snacks" />
+          <h4>🍿 Snacks</h4>
+          <p>Crispy snacks under ₹100</p>
+        </div>
+      </div>
+      <div style="width: 60%;">
+        <div class="category-card" onclick="showCategory('electrical')">
+          <img src="https://proqc.com/wp-content/uploads/2022/07/electric-lighting.webp" alt="Electronics" />
+          <h4>🔌 Electrical items</h4>
+          <p>switches and wires under ₹299</p>
+        </div>
+      </div>
+      <div style="width: 60%;">
+        <div class="category-card" onclick="showCategory('kitchen')">
+          <img src="https://m.media-amazon.com/images/I/91C1OmDRQwL._SL1500_.jpg" alt="Kitchen" />
+          <h4>🍳 Kitchen Accessories</h4>
+          <p>Hot kitchen picks under ₹499</p>
+        </div>
+      </div>
+     <div style="width: 60%;">
+  <div class="category-card" onclick="showCategory('electronics')">
+    <img src="https://img.freepik.com/premium-photo/collection-electronic-devices-including-laptop-phone-ipod_1065421-12202.jpg" alt="Electronics & Gadgets" />
+    <h4> 📱 Electronics & Gadgets </h4>
+    <p>“Hot gadgets — up to 30% off!”</p>
+  </div>
+</div>
+
+
+  </section>
+
+  <!-- Product Area -->
+  <section id="product-area" class="container hidden">
+    <!-- cart icon  -->
+    <div class="cart-container">
+      <i class="fas fa-shopping-cart cart-icon"></i>
+      <span class="cart-count" id="cartCount">0</span>
+      <span style="margin-left: 10px;"></span>
+    </div>
+    <div class="d-flex justify-content-end mb-3">
+      <input type="text" class="form-control w-25" id="searchInput" placeholder="🔍 Search products..."
+        onkeyup="filterProducts()" />
+    </div>
+    <h2 id="category-title" class="text-center mb-4"></h2>
+    <div id="product-list"></div>
+    <div class="text-center mt-4">
+      <button class="btn btn-warning" onclick="goBack()">← Back to Categories</button>
+      <hr>
+      <h3>🛒 Your Cart</h3>
+      <ul id="cart-list"></ul>
+      <p id="cart-total"></p>
+      <button class="btn btn-primary" onclick="placeOrder()">📩 Place Order</button>
+      <button onclick="clearCart()">Clear Cart</button>
+      <hr>
+      <h3>❤️ Your Wishlist</h3>
+      <ul id="wishlist-list"></ul>
+      <button onclick="clearWishlist()">Clear ❤️</button>
+    </div>
+  </section>
+
+  <script>
+    /* --- SAME product data and logic from your main code --- */
+    const productsData = {
+      food: [
+        { name: 'Cake', price1: 200, offer: 15, price: 170, image: './images/cake.png', description: 'Soft, moist layered dessert topped with rich cream and fruits.', benifits: 'Quick energy from carbs and sugar.', approval: '✅ FSSAI & ISO certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Pizza', price1: 300, offer: 20, price: 240, image: './images/pizza.png', description: 'Crispy crust with cheese & veggies.', benifits: 'Calcium + fiber', approval: '✅ FSSAI approved', rating: '⭐⭐⭐' },
+        { name: 'Biryani', price1: 250, offer: 12, price: 220, image: './images/briyani.png', description: 'Spiced rice with tender meat pieces.', benifits: 'Protein rich & filling.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Burger', price1: 150, offer: 10, price: 135, image: './images/burger.png', description: 'Juicy grilled patty with fresh veggies.', benifits: 'Protein and fiber.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Pasta', price1: 220, offer: 18, price: 180, image: './images/pasta.png', description: 'Italian style pasta with tomato sauce.', benifits: 'Rich in carbohydrates.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Sandwich', price1: 180, offer: 10, price: 162, image: './images/sandwich.png', description: 'Whole wheat bread with fresh fillings.', benifits: 'Balanced nutrition.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Fried Rice', price1: 230, offer: 15, price: 196, image: './images/friedrice.png', description: 'Stir-fried rice with veggies and eggs.', benifits: 'High energy food.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Dosa', price1: 120, offer: 8, price: 110, image: './images/dosa.png', description: 'Crispy South Indian pancake.', benifits: 'Low fat and filling.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Idli', price1: 100, offer: 5, price: 95, image: './images/idly.png', description: 'Steamed rice cakes.', benifits: 'Low calorie and easy to digest.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Samosa', price1: 90, offer: 12, price: 79, image: 'images/samosa.png', description: 'Deep fried snack with spicy filling.', benifits: 'Energy rich.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Paneer Butter Masala', price1: 300, offer: 20, price: 240, image: './images/paneerbuttermasala.png', description: 'Cottage cheese cooked in creamy gravy.', benifits: 'High protein.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Chicken Curry', price1: 320, offer: 25, price: 240, image: './images/chickencurry.png', description: 'Spicy chicken curry with Indian spices.', benifits: 'Protein rich.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Fish Fry', price1: 350, offer: 15, price: 298, image: './images/fishfry.png', description: 'Crispy fried fish pieces.', benifits: 'Omega-3 fatty acids.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Mutton Biryani', price1: 400, offer: 18, price: 328, image: './images/muttonbriyani.png', description: 'Spicy rice with tender mutton.', benifits: 'Rich in protein and fats.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Veg Pulao', price1: 200, offer: 10, price: 180, image: './images/vegpalo.png', description: 'Rice cooked with vegetables and spices.', benifits: 'Rich in vitamins and carbs.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Chole Bhature', price1: 180, offer: 12, price: 158, image: './images/cholebhature.png', description: 'Spicy chickpea curry with fried bread.', benifits: 'High protein and carbs.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Masala Dosa', price1: 140, offer: 8, price: 129, image: './images/masaladosa.png', description: 'Dosa filled with spiced potato.', benifits: 'Low fat, filling.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Veg Sandwich', price1: 160, offer: 15, price: 136, image: './images/vegssndwhich.png', description: 'Sandwich with fresh veggies.', benifits: 'Good source of fiber.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Pav Bhaji', price1: 150, offer: 10, price: 135, image: './images/pavbhaji.png', description: 'Spiced vegetable mash with bread.', benifits: 'Rich in vitamins.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Rajma Chawal', price1: 190, offer: 18, price: 156, image: './images/rajmachawal.png', description: 'Red kidney beans curry with rice.', benifits: 'Protein and fiber rich.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Paneer Tikka', price1: 280, offer: 15, price: 238, image: './images/pannertika.png', description: 'Grilled cottage cheese cubes.', benifits: 'High protein.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Egg Curry', price1: 250, offer: 20, price: 200, image: './images/eggcurry.png', description: 'Boiled eggs in spicy gravy.', benifits: 'Protein rich.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Veg Fried Noodles', price1: 200, offer: 12, price: 176, image: './images/vegnoodles.png', description: 'Stir fried noodles with vegetables.', benifits: 'Energy rich.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐' },
+        { name: 'Chicken Biryani', price1: 350, offer: 25, price: 263, image: './images/chickenbriyani.png', description: 'Flavored rice with chicken pieces.', benifits: 'Protein rich.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Sweet Lassi', price1: 120, offer: 10, price: 108, image: './images/sweetlessi.png', description: 'Sweet yogurt-based drink.', benifits: 'Probiotic and refreshing.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Gulab Jamun', price1: 100, offer: 15, price: 85, image: './images/gulabjamun.png', description: 'Sweet syrup soaked dessert balls.', benifits: 'Quick energy.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Kheer', price1: 150, offer: 20, price: 120, image: './images/kheer.png', description: 'Rice pudding cooked with milk and sugar.', benifits: 'Calcium rich.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Rasgulla', price1: 120, offer: 12, price: 106, image: './images/rasagulla.png', description: 'Spongy cottage cheese balls in syrup.', benifits: 'Light sweet treat.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Jalebi', price1: 90, offer: 25, price: 68, image: './images/jelebi.png', description: 'Crispy fried spirals in sugar syrup.', benifits: 'Instant energy.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Butter Naan', price1: 40, offer: 5, price: 38, image: './images/butternaan.png', description: 'Soft bread brushed with butter.', benifits: 'Perfect with curries.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Tandoori Chicken', price1: 350, offer: 18, price: 287, image: './images/tandoorichicken.png', description: 'Char-grilled marinated chicken.', benifits: 'High protein.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Fish Curry', price1: 300, offer: 15, price: 255, image: './images/fishcurry.png', description: 'Spicy fish curry with coconut.', benifits: 'Omega-3 source.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Prawn Masala', price1: 400, offer: 20, price: 320, image: './images/prawnmasala.png', description: 'Spiced prawn curry.', benifits: 'Rich in protein.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Vegetable Curry', price1: 180, offer: 10, price: 162, image: './images/vegetablecurry.png', description: 'Mixed vegetables in gravy.', benifits: 'Vitamin rich.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Methi Paratha', price1: 60, offer: 8, price: 55, image: './images/methiparatha.png', description: 'Flatbread with fenugreek leaves.', benifits: 'Good for digestion.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Aloo Gobi', price1: 150, offer: 12, price: 132, image: './images/aloogobi.png', description: 'Cauliflower and potato curry.', benifits: 'Vitamin C source.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Dal Tadka', price1: 160, offer: 18, price: 131, image: './images/daltadka.png', description: 'Yellow lentils tempered with spices.', benifits: 'Rich in protein.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Palak Paneer', price1: 200, offer: 20, price: 160, image: './images/palakpaneer.png', description: 'Spinach gravy with cottage cheese.', benifits: 'Iron and protein rich.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Baingan Bharta', price1: 150, offer: 10, price: 135, image: './images/bainganbharta.png', description: 'Smoked eggplant mashed with spices.', benifits: 'Low calorie dish.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Chicken Tikka', price1: 300, offer: 15, price: 255, image: './images/chickentalak.png', description: 'Grilled boneless chicken cubes.', benifits: 'Protein rich.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Momo', price1: 120, offer: 12, price: 106, image: './images/momo.png', description: 'Steamed dumplings with filling.', benifits: 'Light snack.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Spring Roll', price1: 100, offer: 8, price: 92, image: './images/springroll.png', description: 'Crispy rolls stuffed with vegetables.', benifits: 'Good appetizer.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Pani Puri', price1: 50, offer: 5, price: 48, image: './images/panipuri.png', description: 'Crispy shells with spicy water.', benifits: 'Refreshing street snack.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Dhokla', price1: 80, offer: 25, price: 60, image: './images/dhokla.png', description: 'Steamed gram flour snack.', benifits: 'Light & healthy.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Litti Chokha', price1: 120, offer: 10, price: 108, image: './images/littichokha.png', description: 'Baked wheat balls with spicy mash.', benifits: 'Rich in fiber.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Vada Pav', price1: 30, offer: 5, price: 29, image: './images/vadapav.png', description: 'Fried potato patty in bun.', benifits: 'Affordable street food.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Misal Pav', price1: 100, offer: 20, price: 80, image: './images/misalpav.png', description: 'Spicy curry with bread rolls.', benifits: 'Rich in protein.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Bhel Puri', price1: 50, offer: 12, price: 44, image: './images/bhelpuri.png', description: 'Puffed rice snack with chutneys.', benifits: 'Low fat snack.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Poha', price1: 60, offer: 10, price: 54, image: './images/poha.png', description: 'Flattened rice cooked with spices.', benifits: 'Light breakfast option.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Kachori', price1: 90, offer: 15, price: 77, image: './images/kachori.png', description: 'Fried pastry with spicy filling.', benifits: 'Tasty snack.', approval: '', rating: '⭐⭐⭐' }
+      ],
+
+
+
+      car: [
+        { name: 'Car Seat Cover', price1: 500, offer: 20, price: 400, image: './images/carseat.png', description: 'Protective and stylish covers for car seats.', benifits: 'Protects seats from wear and adds comfort.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Steering Wheel Cover', price1: 250, offer: 15, price: 213, image: './images/steeringwheelcover.png', description: 'Grip-enhancing wheel cover for comfortable driving.', benifits: 'Improves grip and reduces hand fatigue.', approval: '✅ Quality tested', rating: '⭐⭐⭐⭐⭐' },
+        { name: 'Car Floor Mats', price1: 400, offer: 25, price: 300, image: './images/floormat.png', description: 'Durable mats to protect car floors.', benifits: 'Keeps interior clean and prevents dirt buildup.', approval: '✅ ISO 9001 certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Dashboard Polish', price1: 180, offer: 12, price: 158, image: './images/dashboardcleaner.png', description: 'Liquid polish to restore dashboard shine.', benifits: 'Prevents fading and adds gloss.', approval: '✅ Automotive grade', rating: '⭐⭐⭐⭐' },
+        { name: 'Car Perfume', price1: 120, offer: 10, price: 108, image: './images/perfume.png', description: 'Fragrance for a fresh car interior.', benifits: 'Keeps the car smelling pleasant.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Alloy Wheels', price1: 2500, offer: 30, price: 1750, image: './images/alloywheel.png', description: 'Durable and stylish alloy rims.', benifits: 'Improves performance and aesthetics.', approval: '✅ OEM approved', rating: '⭐⭐⭐⭐' },
+        { name: 'LED Headlights', price1: 800, offer: 25, price: 600, image: './images/ledheadlight.png', description: 'Bright LED lights for cars.', benifits: 'Better visibility and energy saving.', approval: '✅ DOT approved', rating: '⭐⭐⭐⭐⭐' },
+        { name: 'Car Wax', price1: 180, offer: 8, price: 166, image: './images/carwax.png', description: 'Protective wax coating for paint.', benifits: 'Protects car paint and adds shine.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Tire Inflator', price1: 700, offer: 20, price: 560, image: './images/tireinflator.png', description: 'Portable electric tire inflator.', benifits: 'Inflates tires quickly and easily.', approval: '✅ Quality tested', rating: '⭐⭐⭐⭐' },
+        { name: 'Car Vacuum Cleaner', price1: 650, offer: 18, price: 533, image: './images/carvacuumcleaner.png', description: 'Portable vacuum cleaner for interiors.', benifits: 'Removes dust and dirt from car interior.', approval: '✅ CE certified', rating: '⭐⭐⭐⭐⭐' },
+        { name: 'Roof Rack', price1: 1500, offer: 25, price: 1125, image: './images/roofrack.png', description: 'Extra storage rack for the car roof.', benifits: 'Provides extra luggage space.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Car Cover', price1: 500, offer: 15, price: 425, image: './images/carcover.png', description: 'Protective cover for the entire car.', benifits: 'Shields from dust, sun, and rain.', approval: '✅ Waterproof certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Windshield Sunshade', price1: 200, offer: 10, price: 180, image: './images/sunshade.png', description: 'Foldable shade for car windshield.', benifits: 'Blocks UV rays and heat.', approval: '', rating: '⭐⭐⭐⭐⭐' },
+        { name: 'Side Mirror Covers', price1: 120, offer: 10, price: 108, image: './images/sidemirrorcover.png', description: 'Covers for protecting side mirrors.', benifits: 'Prevents scratches and dust.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Car Cleaning Cloth', price1: 80, offer: 5, price: 76, image: './images/carcleaningcloth.png', description: 'Soft microfiber cloth for cleaning.', benifits: 'Scratch-free cleaning of surfaces.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Car Mobile Holder', price1: 180, offer: 20, price: 144, image: './images/carmobileholder.png', description: 'Holder for securing mobile phones.', benifits: 'Keeps phone stable for navigation.', approval: '', rating: '⭐⭐⭐⭐⭐' },
+        { name: 'Fog Lights', price1: 900, offer: 25, price: 675, image: './images/foglight.png', description: 'Extra lights for foggy conditions.', benifits: 'Improves visibility in bad weather.', approval: '✅ DOT approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Car Shampoo', price1: 150, offer: 8, price: 138, image: './images/carshampoo.png', description: 'Liquid soap for washing cars.', benifits: 'Removes dirt without damaging paint.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Wiper Blades', price1: 250, offer: 15, price: 213, image: './images/wiperblades.png', description: 'High-quality rubber blades for windshields.', benifits: 'Ensures clear view during rain.', approval: '✅ Quality tested', rating: '⭐⭐⭐⭐⭐' },
+        { name: 'Car Jump Starter', price1: 2000, offer: 30, price: 1400, image: './images/jumpstarter.png', description: 'Portable device to start a dead battery.', benifits: 'Quickly revives car battery.', approval: '✅ CE certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Tyre Pressure Gauge', price1: 120, offer: 12, price: 106, image: './images/tyrepressuregauge.png', description: 'Small tool to check tire pressure.', benifits: 'Maintains correct tire pressure for safety.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Seat Belt Cushion', price1: 100, offer: 5, price: 95, image: './images/seatbeltcushion.png', description: 'Soft cushion for seat belts.', benifits: 'Prevents neck irritation from straps.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Car Key Cover', price1: 80, offer: 8, price: 74, image: './images/carkeycover.png', description: 'Protective silicone cover for keys.', benifits: 'Protects keys from scratches.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Mud Flaps', price1: 200, offer: 20, price: 160, image: './images/mudflaps.png', description: 'Rubber flaps behind tires.', benifits: 'Prevents mud splashes on car body.', approval: '', rating: '⭐⭐⭐⭐' },
+        { name: 'Trunk Organizer', price1: 300, offer: 15, price: 255, image: './images/trunkory.png', description: 'Storage organizer for car trunk.', benifits: 'Keeps luggage and items organized.', approval: '', rating: '⭐⭐⭐⭐⭐' }
+      ],
+
+      bike: [
+        { name: 'Helmet', price1: 800, offer: 10, price: 720, image: 'https://tse3.mm.bing.net/th/id/OIP.Eldu-M1PgLy_pln1ewnnHgHaGx?pid=Api&P=0&h=180', description: 'Protective headgear for safety.', benifits: 'Safety while riding.', approval: '✅ ISI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Riding Gloves', price1: 400, offer: 15, price: 340, image: 'https://www.oakfield-direct.co.uk/images/ariat-pro-contact-riding-glove-black-p4005-3993_medium.jpg', description: 'Gloves for comfortable grip and safety.', benifits: 'Protects hands from injury.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Motorbike Jacket', price1: 1200, offer: 20, price: 960, image: 'https://m.media-amazon.com/images/I/716KifI4WbL._SL1500_.jpg', description: 'Protective jacket for motorbike riders.', benifits: 'Safety and comfort.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Knee Pads', price1: 300, offer: 12, price: 264, image: 'https://i0.wp.com/www.evolvecombat.no/wp-content/uploads/2019/01/Knee-Pads.jpg?fit=1000%2C1000&ssl=1', description: 'Protective pads for knees.', benifits: 'Prevents injuries.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Bike Lock', price1: 500, offer: 8, price: 460, image: 'https://tse4.mm.bing.net/th/id/OIP.CrdATS64vXVcxCUt58oDdAHaFW?pid=Api&P=0&h=180', description: 'Secure your bike from theft.', benifits: 'Safety from theft.', approval: '✅ ISI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Chain Lubricant', price1: 150, offer: 5, price: 142, image: 'https://tse2.mm.bing.net/th/id/OIP.OD67vtcKwkh_LzL5IUVdrAHaHa?pid=Api&P=0&h=180', description: 'Lubricates bike chain for smooth ride.', benifits: 'Reduces wear & tear.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Bike Mirror', price1: 350, offer: 18, price: 287, image: 'https://tse3.mm.bing.net/th/id/OIP.OCMm7fXkqel3yR_qPUxzogHaHj?pid=Api&P=0&h=180', description: 'Rear view mirror for bike.', benifits: 'Safety and visibility.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Headlight Bulb', price1: 200, offer: 12, price: 176, image: 'https://m.media-amazon.com/images/I/31eoj6tSwbL.jpg', description: 'Spare headlight bulb.', benifits: 'Improved visibility.', approval: '✅ ISI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Handle Grip', price1: 250, offer: 10, price: 225, image: 'https://rukminim2.flixcart.com/image/612/612/xif0q/bicycle-handle-grip/f/4/o/bicycle-handle-grip-pica-original-imah2egwey4ccgjn.jpeg?q=70', description: 'Comfortable grip for bike handles.', benifits: 'Better control.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Bike Stand', price1: 700, offer: 15, price: 595, image: 'https://tse2.mm.bing.net/th/id/OIP.j9-Ct_UHn2Z_HTKmdSgdtwHaJQ?pid=Api&P=0&h=180', description: 'Support stand for parking.', benifits: 'Convenient parking.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Bike Cover', price1: 600, offer: 20, price: 480, image: 'https://m.media-amazon.com/images/I/610lA9th7kS._SL1500_.jpg', description: 'Protective cover from dust and rain.', benifits: 'Prolongs bike life.', approval: '✅ ISI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Fuel Tank Cap', price1: 150, offer: 5, price: 142, image: 'https://5.imimg.com/data5/SELLER/Default/2021/11/TZ/GB/CE/141948008/bajaj-pulsar-bike-fuel-tank-cap-1000x1000.jpg', description: 'Replacement fuel tank cap.', benifits: 'Prevents fuel theft.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Bike Tyre', price1: 1800, offer: 25, price: 1350, image: 'https://m.media-amazon.com/images/I/715wLZ1oUiL._SL1500_.jpg', description: 'Front or rear tyre for bike.', benifits: 'Better road grip.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Brake Pads', price1: 500, offer: 15, price: 425, image: 'https://tse1.mm.bing.net/th/id/OIP.KA6StnQZbbDPIFm_-M-o8wHaH_?pid=Api&P=0&h=180', description: 'Replacement brake pads.', benifits: 'Improved braking.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Bike Horn', price1: 250, offer: 10, price: 225, image: 'https://m.media-amazon.com/images/I/51JJvRPMW4L._AC_SL1500_.jpg', description: 'Horn for signaling.', benifits: 'Safety on roads.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Brake Lever', price1: 200, offer: 5, price: 190, image: 'https://images-na.ssl-images-amazon.com/images/I/51aMNFZWQEL._AC_SL1001_.jpg', description: 'Replacement brake lever.', benifits: 'Improved braking.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Clutch Lever', price1: 200, offer: 10, price: 180, image: 'https://m.media-amazon.com/images/I/61mnlMztucL.jpg', description: 'Replacement clutch lever.', benifits: 'Smooth gear change.', approval: '', rating: '⭐⭐⭐' }
+      ],
+
+
+      dress: [
+  { name: 'Men Casual Shirt', price1: 1200, offer: 30, price: 840, image: 'https://tse4.mm.bing.net/th/id/OIP.YNBVLRuzKtjmFIaBUIO1rwHaJo?pid=Api&P=0&h=180', description: 'Comfortable cotton shirt for daily wear.', benifits: 'Soft and breathable.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+  { name: 'Women Evening Gown', price1: 2500, offer: 40, price: 1500, image: 'https://img.freepik.com/premium-photo/beautiful-elegant-evening-women-s-dress-white-background_236836-23903.jpg?w=2000', description: 'Elegant gown for special occasions.', benifits: 'Stylish and comfortable.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+  { name: 'Boy T-Shirt', price1: 500, offer: 20, price: 400, image: 'https://i5.walmartimages.com/seo/Nike-Men-s-Just-Do-It-Swoosh-T-shirt_2db2d7c6-519d-4273-a805-d48509b4a84e_1.cf1eb24185beb77bf92c8650d943366f.jpeg', description: 'Casual cotton T-shirt for boys.', benifits: 'Soft & lightweight.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Girl Skirt', price1: 600, offer: 25, price: 450, image: 'https://images-cdn.ubuy.co.in/65386827bd4d1531f324edc0-sunny-fashion-girls-skirt-back-school.jpg', description: 'Cute skirt for girls.', benifits: 'Flexible & comfortable.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Men Formal Pants', price1: 1500, offer: 35, price: 975, image: 'https://tse3.mm.bing.net/th/id/OIP.A3STSXv_oC9-08NTHuHoywHaJ4?pid=Api&P=0&h=180', description: 'Elegant formal pants for office wear.', benifits: 'Durable & stylish.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+  { name: 'Women Kurti', price1: 1200, offer: 40, price: 720, image: 'https://png.pngtree.com/png-clipart/20250125/original/pngtree-an-anarkali-style-kurti-png-image_20333577.png', description: 'Traditional Indian attire for women.', benifits: 'Comfortable & colorful.', approval: '', rating: '⭐⭐⭐⭐' },
+  { name: 'Boy Jeans', price1: 800, offer: 30, price: 560, image: 'https://tse4.mm.bing.net/th/id/OIP.iGDsna4OozBFWyb4yKvqWwHaJI?pid=Api&P=0&h=180', description: 'Durable denim jeans for boys.', benifits: 'Comfortable for play.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Girl Dress', price1: 900, offer: 50, price: 450, image: 'https://static.vecteezy.com/system/resources/previews/040/324/210/non_2x/ai-generated-kids-dress-isolated-on-transparent-background-free-png.png', description: 'Party dress for girls.', benifits: 'Soft fabric & stylish.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+  { name: 'Men Polo T-Shirt', price1: 1000, offer: 25, price: 750, image: 'https://tse2.mm.bing.net/th/id/OIP.u-_Vd2lCNQnn5BVuyUgomwHaJW?pid=Api&P=0&h=180', description: 'Casual polo shirt for men.', benifits: 'Breathable & casual.', approval: '', rating: '⭐⭐⭐⭐' },
+  { name: 'Women Saree', price1: 3000, offer: 40, price: 1800, image: 'https://static.vecteezy.com/system/resources/previews/052/646/401/non_2x/vibrant-stacked-silk-sarees-in-hues-isolated-transparent-png.png', description: 'Traditional silk saree.', benifits: 'Elegant & lightweight.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+  { name: 'Boy Shorts', price1: 400, offer: 15, price: 340, image: 'https://m.media-amazon.com/images/I/61qJKZkzAxL._UY1100_.jpg', description: 'Comfortable shorts for boys.', benifits: 'Easy to wear & soft.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Girl Top', price1: 500, offer: 20, price: 400, image: 'https://img500.exportersindia.com/product_images/bc-500/dir_103/3081982/ladies-tops-1497417644-3063858.jpeg', description: 'Cotton top for girls.', benifits: 'Soft and stylish.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Men Hoodie', price1: 1800, offer: 40, price: 1080, image: 'https://png.pngtree.com/png-vector/20240822/ourmid/pngtree-stylish-red-hoodie-for-men-perfect-casual-wear-png-image_13581331.png', description: 'Warm hoodie for casual wear.', benifits: 'Soft and cozy.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+  { name: 'Women Leggings', price1: 800, offer: 30, price: 560, image: 'https://static.vecteezy.com/system/resources/thumbnails/021/949/650/small_2x/pink-pants-isolated-on-a-transparent-background-png.png', description: 'Comfortable stretchable leggings.', benifits: 'Flexible & stylish.', approval: '', rating: '⭐⭐⭐⭐' },
+  { name: 'Boy Jacket', price1: 1200, offer: 50, price: 600, image: 'https://png.pngtree.com/png-vector/20250228/ourmid/pngtree-a-stylish-brown-leather-jacket-with-classic-collar-and-zippered-pockets-png-image_15611457.png', description: 'Winter jacket for boys.', benifits: 'Warm and durable.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Girl Sweater', price1: 1000, offer: 25, price: 750, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXJqo1WV_IUa_1WAvq0J9c7gnxhbPYI0D0fA&s', description: 'Soft sweater for girls.', benifits: 'Comfortable & warm.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Men Blazer', price1: 2500, offer: 40, price: 1500, image: 'https://png.pngtree.com/png-vector/20250501/ourmid/pngtree-formal-suit-with-tie-png-image_16169869.png', description: 'Formal blazer for office & events.', benifits: 'Stylish and elegant.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+  { name: 'Women Top', price1: 900, offer: 30, price: 630, image: 'https://static.vecteezy.com/system/resources/previews/045/911/001/non_2x/silky-shiny-golden-blouse-with-front-knot-design-on-transparent-background-stock-png.png', description: 'Trendy top for women.', benifits: 'Comfortable & stylish.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Boy Hoodie', price1: 1000, offer: 40, price: 600, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6o970aFEnb0apj6veEir8vZ-AAVQGrVxQ6w&s', description: 'Warm hoodie for boys.', benifits: 'Soft and cozy.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Girl Palazzo', price1: 800, offer: 50, price: 400, image: 'https://e7.pngegg.com/pngimages/746/620/png-clipart-clothing-palazzo-pants-polka-dot-culottes-chloe-grace-moretz-miscellaneous-celebrities-thumbnail.png', description: 'Comfortable wide-legged pants for girls.', benifits: 'Flexible & stylish.', approval: '', rating: '⭐⭐⭐' }
+],
+
+
+  toys : [
+    { name: 'Building Blocks', price1: 800, offer: 20, price: 640, image: 'https://m.media-amazon.com/images/I/71tXHg5H-KL.jpg', description: 'Colorful interlocking blocks.', benifits: 'Enhances creativity & motor skills.', approval: '✅ ISI approved', rating: '⭐⭐⭐⭐' },
+    { name: 'Puzzle Game', price1: 500, offer: 15, price: 425, image: 'https://m.media-amazon.com/images/I/71suKI76IGL._AC_SL1500_.jpg', description: 'Brain teaser puzzle for kids.', benifits: 'Improves problem-solving skills.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Toy Car Set', price1: 700, offer: 10, price: 630, image: 'https://m.media-amazon.com/images/I/710OdpYVF7L.jpg', description: 'Miniature racing car set.', benifits: 'Fun and imaginative play.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Stuffed Animal', price1: 600, offer: 20, price: 480, image: 'https://static.vecteezy.com/system/resources/previews/024/724/502/non_2x/stuffed-dog-toy-isolated-on-transparent-background-fluffy-soft-puppy-toy-generative-ai-free-png.png', description: 'Soft cuddly plush toy.', benifits: 'Comfort & emotional support.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+    { name: 'Water Gun', price1: 450, offer: 10, price: 405, image: 'https://th.bing.com/th/id/R.a058465882c9a775d483dabd5f327215?rik=zrh8dpK1nwXYsw&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fwater-gun-transparent%2fwater-gun-transparent-4.png&ehk=DzG%2fMrAKwMiEakrZrxwdxPSKakD2%2fZfaLUPBEki6Ies%3d&risl=&pid=ImgRaw&r=0', description: 'Spray water for outdoor fun.', benifits: 'Active play & enjoyment.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Yo-Yo', price1: 300, offer: 5, price: 285, image: 'https://tse1.mm.bing.net/th/id/OIP.HmQy33Xrn1o9NsZSVz91mAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3', description: 'Classic spinning toy.', benifits: 'Improves hand-eye coordination.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Educational Flashcards', price1: 350, offer: 15, price: 298, image: 'https://www.pngkey.com/png/full/735-7355347_flashcards-png.png', description: 'Cards for learning alphabets & numbers.', benifits: 'Early learning skills.', approval: '✅ ISI approved', rating: '⭐⭐⭐⭐' },
+    { name: 'Mini Drum Set', price1: 900, offer: 20, price: 720, image: 'https://tse3.mm.bing.net/th/id/OIP.o05EmBYP3A5BahB3FzgrJQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3', description: 'Small drum kit for beginners.', benifits: 'Enhances musical skills.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Skipping Rope', price1: 250, offer: 10, price: 225, image: 'https://png.pngtree.com/png-vector/20230903/ourlarge/pngtree-jump-rope-color-png-image_9951494.png', description: 'Fun and fitness rope.', benifits: 'Physical activity & coordination.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Remote Control Car', price1: 950, offer: 25, price: 712, image: 'https://th.bing.com/th/id/R.265ed066c75d3de5dcd5d68aae4d96b9?rik=1AUIQ9lOU5%2fb%2fg&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2frc-car-silhouette%2frc-car-silhouette-11.png&ehk=5zLqvL1kfVFar%2bnSyhHqH2knTNdRtQvX%2bUCvse63Wds%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1', description: 'Battery powered RC car.', benifits: 'Exciting interactive play.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+    { name: 'Coloring Book Set', price1: 400, offer: 15, price: 340, image: 'https://png.pngtree.com/png-clipart/20220531/original/pngtree-coloring-book-for-kids-png-image_7795547.png', description: 'Books with crayons for coloring.', benifits: 'Enhances creativity & focus.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Stacking Rings', price1: 350, offer: 10, price: 315, image: 'https://png.pngtree.com/png-clipart/20240703/original/pngtree-stacking-rings-icon-vector-png-image_15470417.png', description: 'Colorful rings for toddlers.', benifits: 'Motor skill development.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Play Dough Kit', price1: 500, offer: 20, price: 400, image: 'https://m.media-amazon.com/images/I/41yt-UPPJSL._SL500_.jpg', description: 'Modeling clay for kids.', benifits: 'Encourages creativity.', approval: '✅ ISI approved', rating: '⭐⭐⭐⭐' },
+    { name: 'Mini Basketball Hoop', price1: 850, offer: 15, price: 722, image: 'https://www.pngkey.com/png/detail/30-305128_basketball-hoop-png.png', description: 'Indoor mini basketball set.', benifits: 'Active play & coordination.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Magnetic Letters', price1: 300, offer: 5, price: 285, image: 'https://tse4.mm.bing.net/th/id/OIP.Xpkh-IqWEoaKOJhcepIz_wHaHa?rs=1&pid=ImgDetMain&o=7&rm=3', description: 'Letters for fridge or board.', benifits: 'Learning alphabets.', approval: '', rating: '⭐⭐⭐' }
+],
+      snacks: [
+        { name: 'Potato Chips', price1: 50, offer: 10, price: 45, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2NxGv1ic0RVRNEMlxOgIYMSk1n186eDx_zA&s', description: 'Crispy salted potato chips.', benifits: 'Quick energy snack.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Popcorn', price1: 60, offer: 15, price: 51, image: 'https://static.vecteezy.com/system/resources/thumbnails/042/236/044/small_2x/ai-generated-popcorn-in-striped-box-isolated-on-transparent-background-png.png', description: 'Buttery popcorn for movies.', benifits: 'Low fat snack.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Chocolate Bar', price1: 40, offer: 5, price: 38, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh45i5lSnwdWWWtHU0O4YFFyvnTRcoIKEA_A&s', description: 'Sweet chocolate treat.', benifits: 'Instant energy.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Namkeen Mix', price1: 80, offer: 12, price: 70, image: 'https://i.pinimg.com/736x/ab/5b/f9/ab5bf907829e75d4017c1fe30b79d445.jpg', description: 'Spicy traditional Indian snack.', benifits: 'Tasty & crunchy.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Cookies', price1: 90, offer: 20, price: 72, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzqmAdhSoplykP-W5vqT_dLBZPwSA9weuV5A&s', description: 'Assorted biscuits.', benifits: 'Energy rich.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Savoury Crackers', price1: 70, offer: 10, price: 63, image: 'https://png.pngtree.com/png-vector/20240728/ourmid/pngtree-savory-snack-pile-of-crunchy-crackers-perfectly-baked-crispy-cracker-isolated-png-image_13267302.png', description: 'Crispy savory snack.', benifits: 'Light and crunchy.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Dry Fruits Mix', price1: 150, offer: 15, price: 127, image: 'https://static.vecteezy.com/system/resources/thumbnails/049/949/369/small/healthy-mixed-nuts-and-dried-fruits-in-a-bowl-cut-out-transparent-png.png', description: 'Healthy mix of nuts and raisins.', benifits: 'Rich in proteins and vitamins.', approval: '✅ FSSAI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Peanuts', price1: 40, offer: 5, price: 38, image: 'https://img.pikbest.com/png-images/20241022/peanuts-png-isolated-on-transparent-background-high-resolution_10991040.png!bw700', description: 'Roasted salted peanuts.', benifits: 'Quick energy and protein.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Cornflakes Snack', price1: 60, offer: 12, price: 53, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPAqTI4jzL5uTUPkXXKFcO0uVnZh2_HenuUw&s', description: 'Crunchy cornflakes mix.', benifits: 'Light and filling.', approval: '✅ FSSAI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Chikki', price1: 50, offer: 10, price: 45, image: 'https://e7.pngegg.com/pngimages/1016/466/png-clipart-brittle-chikki-snack-food-sugar-natural-honey-honey-bee-food-thumbnail.png', description: 'Sweet brittle made from jaggery and nuts.', benifits: 'Energy-rich traditional snack.', approval: '', rating: '⭐⭐⭐' }
+      ],
+
+      electrical: [
+        { name: 'Switch', price1: 50, offer: 10, price: 45, image: 'https://image.made-in-china.com/2f0j00kfWGFYAnbRbg/2-Gang-2-Way-House-Use-Electric-Micro-Wall-Switch.jpg', description: 'Standard electrical switch.', benifits: 'Controls power flow.', approval: '✅ ISI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Socket', price1: 80, offer: 15, price: 68, image: 'https://tse3.mm.bing.net/th/id/OIP.mP5fEdUegVVL5V7FzMWegwHaLN?pid=Api&P=0&h=180', description: 'Wall socket for plug points.', benifits: 'Safe power connection.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Fuse', price1: 30, offer: 5, price: 28, image: 'https://images.homedepot-static.com/productImages/4eca4e2c-8b19-4e78-ac4e-248b62115981/svn/ge-fuses-54226-64_1000.jpg', description: 'Protects circuits from overload.', benifits: 'Safety from electrical damage.', approval: '✅ ISI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Wire Roll', price1: 200, offer: 20, price: 160, image: 'https://5.imimg.com/data5/PM/YC/DZ/SELLER-28802360/electrical-wires-500x500.jpg', description: 'Copper electrical wire roll.', benifits: 'Reliable conduction.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Light Bulb', price1: 60, offer: 12, price: 53, image: 'https://m.media-amazon.com/images/I/51rIxtlmR-L.jpg', description: 'LED bulb for energy-efficient lighting.', benifits: 'Low energy consumption.', approval: '✅ ISI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Circuit Breaker', price1: 500, offer: 18, price: 410, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Jtecul.jpg/220px-Jtecul.jpg', description: 'Protects electrical circuits.', benifits: 'Safety from overload.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Extension Cord', price1: 150, offer: 10, price: 135, image: 'https://i5.walmartimages.com/asr/13025424-316d-4544-bc4a-9f0b834289fd_1.2ecc7164c8cc1feb6aa332d5eb2939a8.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff', description: 'Flexible multi-plug extension.', benifits: 'Convenient power access.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Dimmer Switch', price1: 300, offer: 15, price: 255, image: 'https://tse2.mm.bing.net/th/id/OIP.uzcvq5LyZhlHodbxHftXHwHaHa?pid=Api&P=0&h=180', description: 'Adjustable light intensity switch.', benifits: 'Energy saving & ambiance.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'LED Strip', price1: 400, offer: 20, price: 320, image: 'https://5.imimg.com/data5/SELLER/Default/2024/12/474326110/PV/TH/CX/15459571/led-strip-light-240-led-1000x1000.png', description: 'Flexible LED lighting strip.', benifits: 'Decorative & efficient.', approval: '✅ ISI certified', rating: '⭐⭐⭐⭐' },
+        { name: 'Battery', price1: 250, offer: 12, price: 220, image: 'https://tse2.mm.bing.net/th/id/OIP.7x9-r97vachbm7RIHgmbhAHaHa?pid=Api&P=0&h=180', description: 'Rechargeable battery pack.', benifits: 'Portable power source.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Charger', price1: 300, offer: 10, price: 270, image: 'https://www.magspremiums.com/wp-content/uploads/2023/07/Retractable-Charging-Cable.jpeg', description: 'Universal device charger.', benifits: 'Reliable charging.', approval: '', rating: '⭐⭐⭐' },
+        { name: 'Relay', price1: 180, offer: 15, price: 153, image: 'https://tse4.mm.bing.net/th/id/OIP.mapMfIDyorBJtrshqGrxbQHaGu?pid=Api&P=0&h=180', description: 'Electromechanical relay for circuits.', benifits: 'Controls high voltage devices.', approval: '✅ ISI approved', rating: '⭐⭐⭐⭐' },
+        { name: 'Transformer', price1: 800, offer: 25, price: 600, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc9ojr2NUY8HG5RI1tKQ1xop2Z9dtWBc9IA&s', description: 'Step-up/step-down transformer.', benifits: 'Stable voltage supply.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' }
+      ],
+
+
+      kitchen: [
+  { name: 'Non-stick Frying Pan', price1: 1200, offer: 60, price: 480, image: 'https://m.media-amazon.com/images/I/61bzaJ-IHOL._AC_SL1500_.jpg', description: 'Easy to cook without sticking.', benifits: 'Healthy cooking.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+  { name: 'Knife Set', price1: 800, offer: 40, price: 480, image: 'https://m.media-amazon.com/images/I/71XuIVeDEKL._AC_.jpg', description: 'Set of stainless steel knives.', benifits: 'Safe and precise cutting.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Cutting Board', price1: 300, offer: 10, price: 270, image: 'https://m.media-amazon.com/images/I/91iLajROOwL.jpg', description: 'Durable chopping board.', benifits: 'Hygienic food preparation.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Pressure Cooker', price1: 2500, offer: 80, price: 499, image: 'https://image.made-in-china.com/2f0j00fnWlaCIFhtzy/Ewant-17L-1950W-Multi-Function-Commercial-Digital-220V-Electric-Pressure-Cooker.jpg', description: 'Cook food faster under pressure.', benifits: 'Saves cooking time.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+  { name: 'Blender', price1: 1800, offer: 75, price: 450, image: 'https://media.istockphoto.com/photos/electric-blender-picture-id471441539?k=6&m=471441539&s=170667a&w=0&h=dxkUu_xY3sNRXwYoXHZjP-hOAYDtvMy-B_vpmmJmPLI=', description: 'Blend smoothies and sauces.', benifits: 'Quick food preparation.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Saucepan', price1: 1200, offer: 60, price: 480, image: 'https://i5.walmartimages.com/asr/37aa852e-ff1f-4981-a5b1-1d9e3a9d5156.01061d063269e59a4863988117a10381.jpeg', description: 'Cook sauces and soups easily.', benifits: 'Even heat distribution.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Grater', price1: 250, offer: 5, price: 238, image: 'https://tse2.mm.bing.net/th/id/OIP.CB6Xwwfd-zk3_mq0KBKn0gHaKy?pid=Api&P=0&h=180', description: 'Grate vegetables and cheese.', benifits: 'Saves time and effort.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Mixing Bowls Set', price1: 600, offer: 20, price: 480, image: 'https://m.media-amazon.com/images/I/718lCOvjtYL._AC_SL1500_.jpg', description: 'Set of bowls for mixing ingredients.', benifits: 'Organized cooking.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+  { name: 'Tea Kettle', price1: 700, offer: 30, price: 490, image: 'https://tse2.mm.bing.net/th/id/OIP.xZDjcM22fLPnRpXX0jr5uQHaHk?pid=Api&P=0&h=180', description: 'Boil water efficiently.', benifits: 'Quick and safe boiling.', approval: '', rating: '⭐⭐⭐' },
+  { name: 'Tawa', price1: 400, offer: 10, price: 360, image: 'https://m.media-amazon.com/images/I/31sMga52bdL._SX300_SY300_QL70_ML2_.jpg', description: 'Flat pan for making roti or pancakes.', benifits: 'Even cooking.', approval: '', rating: '⭐⭐⭐' }
+],
+
+electronics : [
+    { name: 'Smartphone', price1: 15000, offer: 20, price: 12000, image: 'https://i03.appmifile.com/384_item_in/21/01/2025/57e74ae437499b7bcc66a9a62b07eaf3.png', description: 'Latest Android smartphone.', benifits: 'High performance & sleek design.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+    { name: 'Tablet', price1: 12000, offer: 15, price: 10200, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIcr9USJcfwE4GhJMH3qap8o-8dbXeEHUT8w&s', description: 'Portable tablet for work & study.', benifits: 'Lightweight & fast.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Laptop', price1: 45000, offer: 25, price: 33750, image: 'https://www.asus.com/media/Odin/Websites/global/ProductLine/20200824120814.jpg', description: 'Powerful laptop for professionals.', benifits: 'High speed & multitasking.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+    { name: 'Bluetooth Speaker', price1: 3000, offer: 20, price: 2400, image: 'https://static.vecteezy.com/system/resources/previews/055/392/835/non_2x/smart-speaker-device-voice-assistant-bluetooth-music-home-automation-free-png.png', description: 'Portable speaker with excellent sound.', benifits: 'Wireless & convenient.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Wireless Earbuds', price1: 2500, offer: 15, price: 2125, image: 'https://png.pngtree.com/png-vector/20250416/ourmid/pngtree-white-airpods-wireless-earphones-with-charging-case-isolated-on-transparent-background-png-image_16032402.png', description: 'Compact wireless earbuds.', benifits: 'Clear sound & easy to carry.', approval: '✅ ISO approved', rating: '⭐⭐⭐⭐' },
+    { name: 'Smartwatch', price1: 5000, offer: 10, price: 4500, image: 'https://wallpapers.com/images/hd/blue-smartwatch-displaying-text-responses-cpqhibpahfrdllka.jpg', description: 'Fitness & notifications on your wrist.', benifits: 'Track health & calls.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Desktop PC', price1: 40000, offer: 20, price: 32000, image: 'https://static6.depositphotos.com/1000128/575/i/950/depositphotos_5753786-stock-photo-desktop-computer.jpg', description: 'High performance desktop computer.', benifits: 'Ideal for gaming & work.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+    { name: 'Gaming Keyboard', price1: 2000, offer: 15, price: 1700, image: 'https://static.vecteezy.com/system/resources/thumbnails/052/855/141/small_2x/rgb-illuminated-mechanical-gaming-keyboard-free-png.png', description: 'Mechanical keyboard with RGB lights.', benifits: 'Enhanced gaming experience.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Gaming Mouse', price1: 1500, offer: 10, price: 1350, image: 'https://images-na.ssl-images-amazon.com/images/I/71HPtyhEz8L._AC_SL1500_.jpg', description: 'Ergonomic mouse for gaming.', benifits: 'Precision & comfort.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'External Hard Drive', price1: 5000, offer: 20, price: 4000, image: 'https://www.minitool.com/images/uploads/2019/06/external-hard-disk-1.png', description: 'Portable 1TB storage device.', benifits: 'Back up files easily.', approval: '✅ ISO approved', rating: '⭐⭐⭐⭐' },
+    { name: 'Power Bank', price1: 1200, offer: 15, price: 1020, image: 'https://5.imimg.com/data5/LA/UY/MY-48161397/power-bank.png', description: 'Portable charger for devices.', benifits: 'Charge anywhere.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'LED Monitor', price1: 9000, offer: 25, price: 6750, image: 'https://shop.consistent.in/cdn/shop/files/Monitor_32In_1.png?v=1753084653&width=800', description: 'Full HD monitor for work & gaming.', benifits: 'Sharp visuals & eye care.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+    { name: 'Router', price1: 2500, offer: 20, price: 2000, image: 'https://atlas-content-cdn.pixelsquid.com/stock-images/wireless-router-Wy1dk62-600.jpg', description: 'High speed Wi-Fi router.', benifits: 'Reliable internet connection.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Webcam', price1: 1500, offer: 10, price: 1350, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzwJZXRaPpPt5n20cnrHRGuYdJ3TOdld_evg&s', description: 'HD webcam for online meetings.', benifits: 'Clear video calls.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Bluetooth Headphones', price1: 3500, offer: 20, price: 2800, image: 'https://png.pngtree.com/png-clipart/20230417/original/pngtree-bluetooth-headset-electronics-red-transparent-png-image_9062650.png', description: 'Over-ear wireless headphones.', benifits: 'Noise cancellation & comfort.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+    { name: 'USB Flash Drive', price1: 800, offer: 15, price: 680, image: 'https://png.pngtree.com/png-vector/20240407/ourmid/pngtree-blue-pendrive-on-transparent-background-png-image_12260629.png', description: 'Portable 64GB storage.', benifits: 'Quick data transfer.', approval: '', rating: '⭐⭐⭐' },
+    { name: 'Smart Home Hub', price1: 6000, offer: 25, price: 4500, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTesdjSe-aaW-o-DTr2824RiemoULM4k5ktZg&s', description: 'Control smart devices easily.', benifits: 'Convenient home automation.', approval: '✅ ISO certified', rating: '⭐⭐⭐⭐' },
+    { name: 'Projector', price1: 12000, offer: 20, price: 9600, image: 'https://atlas-content-cdn.pixelsquid.com/stock-images/projector-mini-OdlkX8C-600.jpg', description: 'Compact HD projector.', benifits: 'Home theater experience.', approval: '', rating: '⭐⭐⭐' }
+],
+
+
+
+
+    }
+
+
+    let cart = [];
+    let wishlist = [];
+    let cartCount = 0;
+
+    function showCategory(key) {
+      const area = document.getElementById('product-area');
+      const list = document.getElementById('product-list');
+      const title = document.getElementById('category-title');
+      title.textContent = `${key.toUpperCase()} Products`;
+      list.innerHTML = '';
+
+      productsData[key].forEach(p => {
+        list.innerHTML += `
+    <div class="product" data-name="${p.name.toLowerCase()}">
+      <div class="product-image"><img src="${p.image}" loading="{lazy}" alt="${p.name}"></div>
+      <div class="product-details">
+        <h2>${p.name}</h2>
+        <h3>${p.rating || '⭐⭐⭐⭐⭐'}</h3>
+        <p><strong>About:</strong> ${p.description || 'No description provided.'}</p>
+        <p><strong>Benefits:</strong> ${p.benifits || 'Not specified.'}</p>
+        <p><strong>Govt. Approval:</strong> ${p.approval || '✅ Certified product'}</p>
+        <p><strong>💰 &#8377;${p.price1} | 🎯 Offer: ${p.offer}% | Final Price: &#8377;${p.price}</strong></p>
+        <button class="btn btn-cart" onclick="addToCart('${p.name}', ${p.price})">🛒 Add to Cart</button>
+        <button class="btn btn-wish" onclick="addToWishlist('${p.name}')">❤️ Add to Wishlist</button>
+      </div>
+    </div>
+  `;
+      });
+
+
+      document.getElementById('categories').classList.add('hidden');
+      area.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterProducts() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      document.querySelectorAll('#product-list .product').forEach(p => {
+        p.style.display = p.dataset.name.includes(input) ? 'flex' : 'none';
+      });
+    }
+    function addToCart(name, price) {
+      // Original in-memory cart logic
+      cartCount++;
+      const existing = cart.find(i => i.name === name);
+      if (existing) existing.qty++;
+      else cart.push({ name, price, qty: 1 });
+      updateCart();
+      updateCartDisplay();
+
+
+      let storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+      let storedItem = storedCart.find(i => i.name === name);
+      if (storedItem) {
+        storedItem.qty++;
+      } else {
+        let img = document.querySelector(`img[alt="${name}"]`)?.src || '';
+        storedCart.push({ name, price, qty: 1, image: img, selected: true });
+      }
+      localStorage.setItem('cart', JSON.stringify(storedCart));
+    }
+
+    function addToWishlist(name) {
+      // Original in-memory wishlist logic
+      if (!wishlist.includes(name)) wishlist.push(name);
+      updateWishlist();
+
+      // Save to localStorage
+      let storedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      if (!storedWishlist.some(i => i.name === name)) {
+        let img = document.querySelector(`img[alt="${name}"]`)?.src || '';
+        storedWishlist.push({ name, image: img, date: new Date().toLocaleString() });
+        localStorage.setItem('wishlist', JSON.stringify(storedWishlist));
+      }
+    }
+
+
+
+    function updateCart() {
+      const list = document.getElementById('cart-list');
+      list.innerHTML = '';
+      let total = 0;
+      cart.forEach(i => {
+        total += i.price * i.qty;
+        list.innerHTML += `<li>${i.name} x${i.qty} - ₹${i.price * i.qty}</li>`;
+      });
+      document.getElementById('cart-total').textContent = `Total: ₹${total}`;
+    }
+
+    function updateWishlist() {
+      const list = document.getElementById('wishlist-list');
+      list.innerHTML = '';
+      wishlist.forEach(i => list.innerHTML += `<li>${i}</li>`);
+    }
+
+    function clearCart() { cartCount = 0; cart = []; updateCart(); updateCartDisplay(); }
+    function clearWishlist() { wishlist = []; updateWishlist(); }
+    function goBack() {
+      document.getElementById('product-area').classList.add('hidden');
+      document.getElementById('categories').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      updateCartDisplay();
+    }
+    function updateCartDisplay() {
+      const countElement = document.getElementById('cartCount');
+      if (countElement) {
+        countElement.textContent = cartCount;
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
