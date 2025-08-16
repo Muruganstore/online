@@ -22,9 +22,9 @@
   .btn-hero { background:#fff;color:#ff3d6d;padding:12px 25px;border-radius:12px;font-weight:bold;text-decoration:none;transition:0.3s; }
   .btn-hero:hover { background:#ffe6e6; }
 
-  /* Category Quick Picks - horizontal scroll */
+  /* Category Quick Picks */
   .category-section { padding:50px 10px; }
-  .category-wrapper { display:flex; overflow-x:auto; gap:20px; padding-bottom:10px; }
+  .category-wrapper { display:flex; overflow-x:auto; gap:20px; padding-bottom:10px; justify-content:center; }
   .category-card {
     flex:0 0 auto;
     background:white; border-radius:15px; box-shadow:0 6px 18px rgba(0,0,0,0.1);
@@ -37,7 +37,7 @@
   .category-btn { background:#ff3d6d;color:white;padding:8px 15px;border-radius:10px;text-decoration:none;font-weight:bold; display:inline-block; transition:0.3s; }
   .category-btn:hover { background:#ff1a3c; }
 
-  /* Selling Strategy Section */
+  /* Selling Strategy */
   .strategy { background:#fff; padding:50px 10px; text-align:center; }
   .strategy h2 { margin-bottom:30px; }
   .strategy-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
@@ -79,12 +79,22 @@
   <a href="categories.html" class="btn-hero">Start Shopping</a>
 </section>
 
-<!-- Category Quick Picks -->
+<!-- Featured Section -->
 <section class="category-section">
   <h2 style="text-align:center; margin-bottom:30px;">Featured Products</h2>
-  <div class="category-wrapper" id="categoryGrid">
-    <!-- Removed dynamic product cards -->
-    <p style="text-align:center; color:#888;">Product cards are currently unavailable.</p>
+  <div class="category-wrapper">
+    <div class="category-card">
+      <img src="juice.jpg" alt="Fruit Juice">
+      <p class="category-name">Fruit Juice</p>
+      <p class="category-desc">Refreshing natural fruit juice.</p>
+      <a href="#" class="category-btn">Shop Now</a>
+    </div>
+    <div class="category-card">
+      <img src="phone.jpg" alt="Smartphone">
+      <p class="category-name">Smart Phone</p>
+      <p class="category-desc">Latest models available.</p>
+      <a href="#" class="category-btn">Shop Now</a>
+    </div>
   </div>
 </section>
 
@@ -104,10 +114,8 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Removed JavaScript that dynamically created product cards -->
 </body>
 </html>
-  ];
 
   const categoryGrid = document.getElementById("categoryGrid");
   products.forEach(p=>{
@@ -283,5 +291,6 @@ document.getElementById("logoutBtn").addEventListener("click", function(e){
 </script>
 </body>
 </html>
+
 
 
