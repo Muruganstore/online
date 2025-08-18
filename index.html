@@ -133,6 +133,7 @@
         .extra-links a:hover {
             text-decoration: underline;
         }
+        
     </style>
 </head>
 <body>
@@ -200,6 +201,11 @@
     </div>
 
     <script>
+        // Detect if device is mobile
+        function isMobile() {
+            return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        }
+
         const btnLogin = document.getElementById("btnLogin");
         const btnRegister = document.getElementById("btnRegister");
         const loginForm = document.getElementById("loginForm");
@@ -262,7 +268,11 @@
             const user = getUsers().find(u => u.username === username && u.password === password);
             if (user) {
                 localStorage.setItem("loggedInUser", username);
-                window.location.href = "home.html";
+                if (isMobile()) {
+                    window.location.href = "categories.html";  // skip home on phone
+                } else {
+                    window.location.href = "home.html";       // go to home on desktop
+                }
             } else {
                 alert("Incorrect username or password");
             }
@@ -282,13 +292,21 @@
             saveUser({ username, email, password });
             localStorage.setItem("loggedInUser", username);
             alert("Registration successful!");
-            window.location.href = "home.html";
+            if (isMobile()) {
+                window.location.href = "categories.html";
+            } else {
+                window.location.href = "home.html";
+            }
         });
 
         // Login Later
         loginLater.addEventListener("click", () => {
             localStorage.removeItem("loggedInUser");
-            window.location.href = "home.html";
+            if (isMobile()) {
+                window.location.href = "categories.html";
+            } else {
+                window.location.href = "home.html";
+            }
         });
 
         // Forgot Password
