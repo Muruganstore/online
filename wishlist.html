@@ -43,14 +43,14 @@
       padding: 10px;
       text-align: center;
     }
-      .mobile-only { display: none; }
-  .desktop-only { display: block; }
+    .mobile-only { display: none; }
+    .desktop-only { display: block; }
 
-  /* On small screens, swap visibility */
-  @media (max-width: 768px) {
-    .mobile-only { display: block; }
-    .desktop-only { display: none; }
-  }
+    /* On small screens, swap visibility */
+    @media (max-width: 768px) {
+      .mobile-only { display: block; }
+      .desktop-only { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -68,14 +68,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item desktop-only"><a class="nav-link active" href="home.html">Home</a></li>
-<li class="nav-item mobile-only"><a class="nav-link active" href="categories.html">Home</a></li>
-
+        <li class="nav-item mobile-only"><a class="nav-link active" href="categories.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
         <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
         <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         <li class="nav-item"><a class="nav-link" href="terms.html">Terms</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html">log out</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">Log out</a></li>
       </ul>
     </div>
   </div>
@@ -101,6 +100,17 @@
       return;
     }
 
+    // ✅ Normalize prices (convert "₹1000" -> 1000)
+    wishlist = wishlist.map(item => {
+      return {
+        ...item,
+        price: parseFloat(String(item.price).replace(/[^0-9.]/g, "")) || 0
+      };
+    });
+
+    // Save back normalized wishlist
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
     wishlist.forEach((item, index) => {
       container.innerHTML += `
         <div class="col-md-4 mb-3">
@@ -108,7 +118,7 @@
             <img src="${item.image}" class="wishlist-img w-100 mb-2" alt="${item.name}">
             <h5>${item.name}</h5>
             <p>Price: ₹${item.price}</p>
-            <p class="text-muted small">Added on: ${item.date}</p>
+            <p class="text-muted small">Added on: ${item.date || ""}</p>
             <button class="btn btn-success btn-sm" onclick="addToCart('${item.name}', ${item.price}, '${item.image}')">
               🛒 Add to Cart
             </button>
@@ -127,7 +137,7 @@
     if (existing) {
       existing.qty++;
     } else {
-      cartData.push({ name, price, qty: 1, image });
+      cartData.push({ name, price: parseFloat(price), qty: 1, image });
     }
     localStorage.setItem('cart', JSON.stringify(cartData));
     alert(`✅ ${name} moved to cart`);

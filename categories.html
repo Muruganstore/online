@@ -491,7 +491,7 @@ electronics : [
         <p><strong>Govt. Approval:</strong> ${p.approval || '✅ Certified product'}</p>
         <p><strong>💰 &#8377;${p.price1} | 🎯 Offer: ${p.offer}% | Final Price: &#8377;${p.price}</strong></p>
         <button class="btn btn-cart" onclick="addToCart('${p.name}', ${p.price})">🛒 Add to Cart</button>
-        <button class="btn btn-wish" onclick="addToWishlist('${p.name}')">❤️ Add to Wishlist</button>
+        <button class="btn btn-wish" onclick="addToWishlist('${p.name}', ${p.price})">❤️ Add to Wishlist</button>
       </div>
     </div>
   `;
@@ -530,19 +530,26 @@ electronics : [
       localStorage.setItem('cart', JSON.stringify(storedCart));
     }
 
-    function addToWishlist(name) {
-      // Original in-memory wishlist logic
-      if (!wishlist.includes(name)) wishlist.push(name);
-      updateWishlist();
+    function addToWishlist(name, price) {
+  // Original in-memory wishlist logic
+  if (!wishlist.includes(name)) wishlist.push(name);
+  updateWishlist();
 
-      // Save to localStorage
-      let storedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-      if (!storedWishlist.some(i => i.name === name)) {
-        let img = document.querySelector(`img[alt="${name}"]`)?.src || '';
-        storedWishlist.push({ name, image: img, date: new Date().toLocaleString() });
-        localStorage.setItem('wishlist', JSON.stringify(storedWishlist));
-      }
-    }
+  // Save to localStorage
+  let storedWishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+  if (!storedWishlist.some(i => i.name === name)) {
+    let img = document.querySelector(`img[alt="${name}"]`)?.src || '';
+    storedWishlist.push({
+      name,
+      price,   // <-- include price
+      qty: 1,  // <-- optional if you want qty too
+      image: img,
+      date: new Date().toLocaleString()
+    });
+    localStorage.setItem('wishlist', JSON.stringify(storedWishlist));
+  }
+}
+
 
 
 
@@ -558,10 +565,12 @@ electronics : [
     }
 
     function updateWishlist() {
-      const list = document.getElementById('wishlist-list');
-      list.innerHTML = '';
-      wishlist.forEach(i => list.innerHTML += `<li>${i}</li>`);
-    }
+  const list = document.getElementById('wishlist-list');
+  list.innerHTML = '';
+  wishlist.forEach(i => {
+    list.innerHTML += `<li>${i.name} - ₹${i.price}</li>`;
+  });
+}
 
     function clearCart() { cartCount = 0; cart = []; updateCart(); updateCartDisplay(); }
     function clearWishlist() { wishlist = []; updateWishlist(); }
