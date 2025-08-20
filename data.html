@@ -5,26 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Info - Murugan Store</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f8f9fa, #fff3cd);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .store-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .store-header h1 {
+      font-weight: 700;
+      color: #155724;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .progress {
+      height: 12px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+    }
+    .card {
+      border-radius: 20px;
+      border: none;
+      background: #ffffff;
+    }
+    .form-control, textarea {
+      border-radius: 12px;
+      border: 1px solid #dee2e6;
+    }
+    .btn-custom {
+      background: linear-gradient(45deg, #ffc107, #28a745);
+      border: none;
+      border-radius: 12px;
+      transition: 0.3s;
+      font-weight: 600;
+      color: #fff;
+    }
+    .btn-custom:hover {
+      background: linear-gradient(45deg, #28a745, #ffc107);
+      transform: scale(1.03);
+    }
+    .form-label {
+      font-weight: 500;
+      color: #333;
+    }
+    .card-title {
+      font-weight: 600;
+      color: #155724;
+    }
+  </style>
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
-  <h2 class="mb-4">📝 Enter Your Delivery Details</h2>
-  <form id="userForm" class="card p-4 shadow">
-    <div class="mb-3">
-      <label class="form-label">Full Name</label>
-      <input type="text" class="form-control" id="fullName" required>
+<div class="container">
+  <div class="col-md-8 col-lg-6 mx-auto">
+
+    <!-- 🏬 Store Header -->
+    <div class="store-header">
+      <h1>🏬 Murugan Store</h1>
+      <p class="text-muted">Fast • Reliable • Trusted</p>
     </div>
-    <div class="mb-3">
-      <label class="form-label">Phone Number</label>
-      <input type="tel" class="form-control" id="phone" required>
+
+    <!-- Progress Bar -->
+    <div class="progress">
+      <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" 
+           aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+      </div>
     </div>
-    <div class="mb-3">
-      <label class="form-label">Delivery Address</label>
-      <textarea class="form-control" id="address" rows="3" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-success w-100">Save & Continue</button>
-  </form>
+    <p class="text-center small text-success fw-bold">Step 2 of 4: Delivery Details</p>
+
+    <!-- Form Card -->
+    <form id="userForm" class="card p-4 shadow-lg">
+      <h4 class="card-title mb-4 text-center">📝 Enter Your Delivery Details</h4>
+      
+      <div class="mb-3">
+        <label class="form-label">👤 Full Name</label>
+        <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label">📞 Phone Number</label>
+        <input type="tel" class="form-control" id="phone" placeholder="+91 98765 43210" required>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label">🏠 Delivery Address</label>
+        <textarea class="form-control" id="address" rows="3" placeholder="Street, City, Pincode" required></textarea>
+      </div>
+  
+      <!-- 📦 Shipping Type -->
+      <div class="mb-3">
+        <label class="form-label">🚚 Shipping Type</label>
+        <input type="text" class="form-control" value="Cash on Delivery" readonly>
+      </div>
+  
+      <button type="submit" class="btn btn-custom w-100 py-2">
+        ✅ Save & Continue
+      </button>
+    </form>
+  </div>
 </div>
 
 <script>
@@ -33,7 +116,8 @@ document.getElementById("userForm").addEventListener("submit", function(e) {
   let userData = {
     fullName: document.getElementById("fullName").value,
     phone: document.getElementById("phone").value,
-    address: document.getElementById("address").value
+    address: document.getElementById("address").value,
+    shippingType: "Cash on Delivery"
   };
   localStorage.setItem("userData", JSON.stringify(userData));
   // Go back to cart
