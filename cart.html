@@ -242,17 +242,31 @@ function placeOrder() {
   orders.push(newOrder);
   localStorage.setItem('orders', JSON.stringify(orders));
 
+  // remove selected items from cart
   cart = cart.filter(item => !item.selected);
   localStorage.setItem('cart', JSON.stringify(cart));
 
-  let orderDetails = selectedItems.map(item => 
-    `${item.name} - ₹${item.price} x ${item.qty} = ₹${item.price * item.qty}`
-  ).join('%0D%0A');
+  // build email details
+  let orderDetails = selectedItems
+    .map(item => `${item.name} - ₹${item.price} x ${item.qty} = ₹${item.price * item.qty}`)
+    .join('\n');
 
   let emailSubject = `Murugan Store Order - ${newOrder.date}`;
-  let emailBody = `Order Date: ${newOrder.date}%0D%0A%0D%0AItems:%0D%0A${orderDetails}%0D%0A%0D%0ASubtotal: ₹${subtotal}%0D%0AShipping: ₹50%0D%0ATotal: ₹${total}%0D%0A%0D%0AThank you for shopping with us!`;
+  let emailBody = `
+Order Date: ${newOrder.date}
 
-  window.location.href = `mailto:muruganstore680@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${emailBody}`;
+Items:
+${orderDetails}
+
+Subtotal: ₹${subtotal}
+Shipping: ₹50
+Total: ₹${total}
+
+Thank you for shopping with us!
+`;
+
+  // open Gmail compose with all items properly encoded
+  window.location.href = `mailto:muruganstore680@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
   renderCart();
   renderHistory();
@@ -261,6 +275,7 @@ function placeOrder() {
   anim.style.display = 'block';
   setTimeout(() => anim.style.display = 'none', 3000);
 }
+
 
 renderCart();
 renderHistory();
